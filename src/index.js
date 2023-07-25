@@ -1,23 +1,9 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+
+import { Provider } from "react-redux";
+import configureStore from "store";
 
 import "assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -29,6 +15,7 @@ import AuthLayout from "layouts/Auth.js";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
+  <Provider store = {configureStore()}>
   <BrowserRouter>
     <Routes>
       <Route path="/admin/*" element={<AdminLayout />} />
@@ -36,4 +23,6 @@ root.render(
       <Route path="*" element={<Navigate to="/admin/index" replace />} />
     </Routes>
   </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
 );
